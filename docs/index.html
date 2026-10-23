@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060a">
+  <title>Project Hardstyle · Hardstyle events in Adelaide</title>
+  <meta name="description" content="Project Hardstyle: hardstyle events in Adelaide. What's on next, tickets, and every show in the archive.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Project Hardstyle · new website preview">
+  <meta property="og:description" content="A first look at a new website for Project Hardstyle, with a login to post every event.">
+  <meta property="og:image" content="https://projecthardstyle.vercel.app/assets/img/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="home">
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Project Hardstyle home">
+        <img class="brand-mark" src="assets/img/logo-mark.png" alt="" width="40" height="40">
+        <span class="brand-word">Project Hardstyle<small>Adelaide</small></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="#top">Next event</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+        <a href="#follow">Follow</a>
+        <a class="btn btn-sm" id="nav-tickets" href="#top">Tickets</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-label="Next event">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="smoke"></div>
+        <img class="swirl" src="assets/img/swirl-gold.webp" alt="" width="1100" height="1100" fetchpriority="low">
+        <div class="ghost-word">HARDSTYLE</div>
+        <div class="lasers">
+          <i style="--x:18%;--a:-24deg;--d:7.5s"></i>
+          <i style="--x:34%;--a:-8deg;--d:6s"></i>
+          <i style="--x:50%;--a:2deg;--d:8.5s"></i>
+          <i style="--x:66%;--a:12deg;--d:6.8s"></i>
+          <i style="--x:82%;--a:26deg;--d:9s"></i>
+        </div>
+        <div class="floor"></div>
+      </div>
+      <div class="wrap" id="hero-inner">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Next event</p>
+            <div class="skeleton" style="height:120px;border-radius:14px;margin:18px 0"></div>
+            <div class="skeleton" style="height:22px;width:60%;border-radius:8px"></div>
+          </div>
+          <div class="hero-poster"><div class="poster-frame skeleton" style="aspect-ratio:4/5"></div></div>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">Scroll</div>
+    </section>
+
+    <section class="section" id="upcoming" hidden>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">Also coming up</p>
+            <h2 class="section-title">More <span class="outline">shows</span></h2>
+          </div>
+        </div>
+        <div class="event-grid" id="upcoming-grid"></div>
+      </div>
+    </section>
+
+    <div class="marquee" id="marquee" hidden></div>
+
+    <section class="section" id="archive">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The archive</p>
+            <h2 class="section-title">Every show. <span class="outline">Every poster.</span></h2>
+            <p class="section-sub">Every Project Hardstyle event, with its poster and lineup. New events land here by themselves the morning after the show.</p>
+          </div>
+          <a class="btn btn-ghost" href="archive.html">See all <span id="archive-count"></span> events</a>
+        </div>
+        <div class="poster-wall reveal" id="archive-wall">
+          <div class="wall-item skeleton"></div><div class="wall-item skeleton"></div><div class="wall-item skeleton"></div><div class="wall-item skeleton"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap story">
+        <div class="reveal" id="story-copy">
+          <p class="eyebrow">About</p>
+          <h2 class="section-title">Hardstyle, <span class="outline">Adelaide</span></h2>
+          <div id="story-text">
+            <p><strong>Project Hardstyle</strong> runs hardstyle nights in Adelaide, from the local residents who open the night to the international headliners who close it.</p>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="stats">
+            <div class="stat"><b id="stat-first">&nbsp;</b><span>First event on the books</span></div>
+            <div class="stat"><b id="stat-events">&nbsp;</b><span>Events in the archive</span></div>
+          </div>
+          <div class="crew" id="crew"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="follow">
+      <div class="wrap">
+        <div class="join reveal">
+          <p class="eyebrow">Presale list</p>
+          <h2>Be first when tickets drop</h2>
+          <p>Get the announcement in your inbox the moment the next event goes on sale.</p>
+          <form id="join-form" novalidate>
+            <label class="sr-only" for="join-email">Email</label>
+            <input id="join-email" type="email" placeholder="Your email" autocomplete="email">
+            <button class="btn" type="submit">Join the list</button>
+          </form>
+          <p class="note" id="join-note" role="status"></p>
+          <div class="socials">
+            <a href="https://www.instagram.com/projecthardstyle_adelaide/" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+              @projecthardstyle_adelaide
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div>
+          <a class="brand" href="index.html">
+            <img class="brand-mark" src="assets/img/logo-mark.png" alt="" width="40" height="40">
+            <span class="brand-word">Project Hardstyle<small>Adelaide</small></span>
+          </a>
+          <p class="muted" style="color:var(--muted);max-width:40ch;margin-top:16px">Hardstyle events in Adelaide. Tickets through Moshtix. 18+.</p>
+        </div>
+        <div>
+          <h4>Events</h4>
+          <ul>
+            <li><a href="#top">Next event</a></li>
+            <li><a href="archive.html">The archive</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Follow</h4>
+          <ul id="foot-socials">
+            <li><a href="https://www.instagram.com/projecthardstyle_adelaide/" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="foot-note">
+        <span>&copy; <span id="yr">2026</span> Project Hardstyle</span>
+        <span><a href="admin/">Organiser login</a> · Website by <a href="https://mplaunch.com.au" target="_blank" rel="noopener">MP Launch</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="concept-ribbon" aria-hidden="true"><span class="dot"></span>Design concept by <b>MP Launch</b></div>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script>
+  (function(){try{
+    if(navigator.webdriver)return;
+    var v=new URLSearchParams(location.search).get('v');
+    if(!v)return;
+    var slug="project-hardstyle-preview", label="", phone="";
+    var k="mpl_seen_"+slug, last=+localStorage.getItem(k)||0;
+    if(Date.now()-last<432e5)return;
+    var fired=false,dwell=0,t=null;
+    function live(){return document.visibilityState==="visible";}
+    function send(how){
+      if(fired||!live())return; fired=true; if(t)clearInterval(t);
+      localStorage.setItem(k,String(Date.now()));
+      new Image().src="https://mplaunch.com.au/api/preview-view?slug="+encodeURIComponent(slug)
+        +"&label="+encodeURIComponent(label)+"&phone="+encodeURIComponent(phone)
+        +"&src="+encodeURIComponent(v)+"&via="+how+"&t="+Date.now();
+    }
+    function start(){
+      t=setInterval(function(){if(!live())return; dwell+=500; if(dwell>=5000)send("dwell");},500);
+      ["pointerdown","scroll","keydown"].forEach(function(e){
+        addEventListener(e,function(){send("interaction");},{once:true,passive:true});});
+    }
+    if(document.prerendering){document.addEventListener("prerenderingchange",start,{once:true});}
+    else{start();}
+  }catch(e){}})();
+  </script>
+</body>
+</html>

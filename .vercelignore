@@ -1,0 +1,6 @@
+_qa
+_tools
+.git
+*.log
+.env*
+README-internal.md

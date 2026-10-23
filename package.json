@@ -1,0 +1,11 @@
+{
+  "name": "project-hardstyle-preview",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Project Hardstyle concept site by MP Launch. Static pages plus serverless functions for the events login.",
+  "engines": { "node": "24.x" },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
+    "@vercel/blob": "^2.8.2"
+  }
+}

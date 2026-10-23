@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#07060a">
+  <title>The archive · Project Hardstyle</title>
+  <meta property="og:title" content="Project Hardstyle · new website preview">
+  <meta property="og:image" content="https://projecthardstyle.vercel.app/assets/img/og.jpg">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body data-page="archive">
+
+  <header class="site-header">
+    <div class="wrap bar">
+      <a class="brand" href="index.html" aria-label="Project Hardstyle home">
+        <img class="brand-mark" src="assets/img/logo-mark.png" alt="" width="40" height="40">
+        <span class="brand-word">Project Hardstyle<small>Adelaide</small></span>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="index.html">Next event</a>
+        <a href="archive.html" aria-current="page">Archive</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#follow">Follow</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" style="padding-top:140px">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <div>
+            <p class="eyebrow">The archive</p>
+            <h1 class="section-title"><span id="archive-total">&nbsp;</span> events. <span class="outline" id="archive-span">&nbsp;</span></h1>
+            <p class="section-sub">Every Project Hardstyle event on record, newest first. Tap a poster for the lineup.</p>
+          </div>
+        </div>
+        <div class="year-filter" id="year-filter" role="group" aria-label="Filter by year"></div>
+        <div class="poster-wall" id="full-wall">
+          <div class="wall-item skeleton"></div><div class="wall-item skeleton"></div><div class="wall-item skeleton"></div><div class="wall-item skeleton"></div><div class="wall-item skeleton"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-note" style="margin-top:0;border-top:0;padding-top:0">
+        <span>&copy; 2026 Project Hardstyle · Tickets through Moshtix · 18+</span>
+        <span><a href="admin/">Organiser login</a> · Website by <a href="https://mplaunch.com.au" target="_blank" rel="noopener">MP Launch</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="concept-ribbon" aria-hidden="true"><span class="dot"></span>Design concept by <b>MP Launch</b></div>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/site.js"></script>
+  <script>
+  (function(){try{
+    if(navigator.webdriver)return;
+    var v=new URLSearchParams(location.search).get('v');
+    if(!v)return;
+    var slug="project-hardstyle-preview", label="", phone="";
+    var k="mpl_seen_"+slug, last=+localStorage.getItem(k)||0;
+    if(Date.now()-last<432e5)return;
+    var fired=false,dwell=0,t=null;
+    function live(){return document.visibilityState==="visible";}
+    function send(how){
+      if(fired||!live())return; fired=true; if(t)clearInterval(t);
+      localStorage.setItem(k,String(Date.now()));
+      new Image().src="https://mplaunch.com.au/api/preview-view?slug="+encodeURIComponent(slug)
+        +"&label="+encodeURIComponent(label)+"&phone="+encodeURIComponent(phone)
+        +"&src="+encodeURIComponent(v)+"&via="+how+"&t="+Date.now();
+    }
+    function start(){
+      t=setInterval(function(){if(!live())return; dwell+=500; if(dwell>=5000)send("dwell");},500);
+      ["pointerdown","scroll","keydown"].forEach(function(e){
+        addEventListener(e,function(){send("interaction");},{once:true,passive:true});});
+    }
+    if(document.prerendering){document.addEventListener("prerenderingchange",start,{once:true});}
+    else{start();}
+  }catch(e){}})();
+  </script>
+</body>
+</html>
