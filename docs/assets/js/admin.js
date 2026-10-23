@@ -133,6 +133,7 @@
       ),
       h('div', { class: 'acts' },
         h('button', { class: 'btn btn-sm', type: 'button', text: 'Edit', onclick: function () { openEditor(ev); } }),
+        ev.published ? h('a', { class: 'btn btn-ghost btn-sm', href: '../event.html?id=' + encodeURIComponent(ev.id), target: '_blank', rel: 'noopener', text: 'View' }) : null,
         h('button', { class: 'btn btn-ghost btn-sm', type: 'button', text: 'Copy', title: 'Start a new event from this one',
           onclick: function () { openEditor(copyOf(ev)); } }),
         del
@@ -155,7 +156,25 @@
 
   /* ------------------------------------------------------------- editor */
   var ed = $('#editor');
-  var F = ['title', 'tagline', 'date', 'startTime', 'endTime', 'venue', 'suburb', 'ticketUrl', 'priceText', 'age', 'description'];
+  var F = ['title', 'tagline', 'date', 'startTime', 'endTime', 'venue', 'suburb', 'address', 'ticketUrl', 'priceText', 'age', 'description'];
+
+  /* Venues they have used before: pick one and its suburb and address fill in. */
+  function venueMemory() {
+    var seen = {};
+    state.events.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; }).forEach(function (e) {
+      if (e.venue && !seen[e.venue.toLowerCase()]) seen[e.venue.toLowerCase()] = e;
+    });
+    var dl = $('#venues');
+    dl.replaceChildren();
+    Object.keys(seen).forEach(function (k) { dl.append(h('option', { value: seen[k].venue })); });
+    return seen;
+  }
+  $('#f-venue').addEventListener('change', function () {
+    var hit = venueMemory()[this.value.trim().toLowerCase()];
+    if (!hit) return;
+    if (!$('#f-suburb').value && hit.suburb) $('#f-suburb').value = hit.suburb;
+    if (!$('#f-address').value && hit.address) $('#f-address').value = hit.address;
+  });
 
   function openEditor(ev) {
     state.editing = ev && ev.id ? ev : null;

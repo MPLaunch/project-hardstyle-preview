@@ -78,6 +78,7 @@ function rowToEvent(r, today) {
     endTime: r.end_time || '',
     venue: r.venue || '',
     suburb: r.suburb || '',
+    address: r.address || '',
     headliners: r.headliners || [],
     lineup: r.lineup || [],
     ticketUrl: r.ticket_url || null,
@@ -116,6 +117,7 @@ function clean(b) {
       endTime: str(b.endTime, 20) || null,
       venue: str(b.venue, 120) || null,
       suburb: str(b.suburb, 80) || null,
+      address: str(b.address, 160) || null,
       headliners: list(b.headliners, 12, 60),
       lineup: list(b.lineup, 40, 60),
       ticketUrl,
@@ -201,11 +203,11 @@ module.exports = async (req, res) => {
     if (req.method === 'POST') {
       const slug = f.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
       const id = `${f.date}-${slug}-${Math.random().toString(36).slice(2, 6)}`;
-      await sql`INSERT INTO events (id, title, tagline, event_date, start_time, end_time, venue, suburb,
+      await sql`INSERT INTO events (id, title, tagline, event_date, start_time, end_time, venue, suburb, address,
                   headliners, lineup, ticket_url, ticket_status, price_text, age, poster_url, poster_w, poster_h,
                   accent, description, featured, published)
                 VALUES (${id}, ${f.title}, ${f.tagline}, ${f.date}, ${f.startTime}, ${f.endTime}, ${f.venue}, ${f.suburb},
-                  ${f.headliners}, ${f.lineup}, ${f.ticketUrl}, ${f.ticketStatus}, ${f.priceText}, ${f.age},
+                  ${f.address}, ${f.headliners}, ${f.lineup}, ${f.ticketUrl}, ${f.ticketStatus}, ${f.priceText}, ${f.age},
                   ${f.poster}, ${f.posterW}, ${f.posterH}, ${f.accent}, ${f.description}, ${f.featured}, ${f.published})`;
       const rows = await sql.query(`${SELECT_COLS} WHERE id = $1`, [id]);
       return res.status(201).json({ ok: true, event: rowToEvent(rows[0], today) });
@@ -215,6 +217,7 @@ module.exports = async (req, res) => {
     if (!id) return res.status(400).json({ error: 'Which event?' });
     const r = await sql`UPDATE events SET title = ${f.title}, tagline = ${f.tagline}, event_date = ${f.date},
                 start_time = ${f.startTime}, end_time = ${f.endTime}, venue = ${f.venue}, suburb = ${f.suburb},
+                address = ${f.address},
                 headliners = ${f.headliners}, lineup = ${f.lineup}, ticket_url = ${f.ticketUrl},
                 ticket_status = ${f.ticketStatus}, price_text = ${f.priceText}, age = ${f.age},
                 poster_url = ${f.poster}, poster_w = ${f.posterW}, poster_h = ${f.posterH}, accent = ${f.accent},
