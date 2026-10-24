@@ -97,7 +97,7 @@
 
   function statusChip(ev, ph) {
     if (ph === 'live') return h('span', { class: 'chip live' }, h('span', { class: 'dot' }), 'On now');
-    if (ph === 'tonight') return h('span', { class: 'chip live' }, h('span', { class: 'dot' }), 'Tonight');
+    if (ph === 'tonight') return h('span', { class: 'chip live' }, h('span', { class: 'dot' }), 'Next up');
     var map = { 'on-sale': 'On sale', 'final-release': 'Final release', 'sold-out': 'Sold out', 'coming-soon': 'Announced' };
     return h('span', { class: 'chip ' + (ev.ticketStatus === 'sold-out' ? '' : 'hot') }, h('span', { class: 'dot' }), map[ev.ticketStatus] || '');
   }
@@ -111,7 +111,7 @@
     var ph = phase(ev), w = window_(ev);
     if (ev.poster) { var wash = $('#hero-wash'); wash.style.setProperty('--img', 'url("' + PH.img(ev.poster, 320) + '")'); wash.classList.add('on'); }
 
-    var eyebrow = { soon: 'Next event', tonight: 'Tonight', live: 'On now', after: 'Thanks for coming' }[ph];
+    var eyebrow = { soon: 'Next up', tonight: 'Next up', live: 'On now', after: 'Thanks for coming' }[ph];
     var title = h('h1', { class: 'hero-title', 'data-fit': '' }, h('span', { class: 'glow', text: cleanTitle(ev.title) }));
     var tag = ev.tagline || (ev.headliners.length ? 'ft ' + ev.headliners.join(', ') : '');
     var meta = h('ul', { class: 'meta' },
@@ -250,7 +250,7 @@
     if (!box) return;
     var ev = f.featured, items;
     if (ev) {
-      items = [phase(ev) === 'tonight' ? 'Tonight' : 'Next', cleanTitle(ev.title), PH.fmtDate(ev.date)].concat(ev.venue ? [ev.venue] : [])
+      items = ['Next up', cleanTitle(ev.title), PH.fmtDate(ev.date)].concat(ev.venue ? [ev.venue] : [])
         .concat(ev.headliners.slice(0, 4)).concat(ev.ticketUrl ? ['Tickets via Moshtix'] : []);
     } else {
       items = ['Adelaide\'s Home of Hardstyle', 'Since 2014', 'Next event coming soon', 'Join the presale list'];
